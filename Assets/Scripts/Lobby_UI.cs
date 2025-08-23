@@ -17,12 +17,12 @@ public class Lobby_UI : MonoBehaviour
    [SerializeField] private Button JoinButton;
    [SerializeField] private TMP_InputField JoinInputField;
 
-   private ILobbyManager _lobbyManager;
+   private ILobbyManager_Service _lobbyManagerService;
 
    [Inject]
-   private void Construct(ILobbyManager lobbyManager)
+   private void Construct(ILobbyManager_Service lobbyManagerService)
    {
-      _lobbyManager = lobbyManager;
+      _lobbyManagerService = lobbyManagerService;
    }
 
    private void Start()
@@ -33,11 +33,11 @@ public class Lobby_UI : MonoBehaviour
 
    public void CreateRoom()
    {
-      _lobbyManager.StartGame(GameMode.Host, CreateInputField.text);
+      _lobbyManagerService.StartGame(GameMode.Host, CreateInputField.text);
    }
 
    public void JoinRoom()
    {
-      _lobbyManager.StartGame(GameMode.Client, JoinInputField.text);
+      _lobbyManagerService.StartGame(GameMode.Client, JoinInputField.text);
    }
 }

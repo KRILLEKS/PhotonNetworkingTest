@@ -10,8 +10,8 @@ using Object = UnityEngine.Object;
 
 namespace Services
 {
-   public class LobbyManager : ILobbyManager,
-                               INetworkRunnerCallbacks
+   public class LobbyManagerService : ILobbyManager_Service,
+                                      INetworkRunnerCallbacks
    {
       private NetworkRunner _runner;
 
