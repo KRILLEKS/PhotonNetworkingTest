@@ -12,7 +12,7 @@ namespace Services.TicTacToeGrid
    public class TicTacToeGrid_Service : ITicTacToeGrid_Service
    {
       private Grid_Config _gridConfig;
-      
+
       private GameObject _contentParent;
       private LineRenderer[] gridLines;
       private float cellSize;
@@ -147,17 +147,19 @@ namespace Services.TicTacToeGrid
          gridLines = null;
       }
 
-      public Vector2Int WorldToGridPosition(Vector3 worldPosition)
+      public Vector2Int? WorldToGridPosition(Vector3 worldPosition)
       {
          Vector3 localPos = _contentParent.transform.InverseTransformPoint(worldPosition);
+
+         // Convert to grid coordinates (0,0 is bottom-left)
          localPos += new Vector3(totalGridSize / 2f, totalGridSize / 2f, 0f);
 
          int x = Mathf.FloorToInt(localPos.x / cellSize);
          int y = Mathf.FloorToInt(localPos.y / cellSize);
 
-         // Clamp to grid bounds
-         x = Mathf.Clamp(x, 0, _gridConfig.gridSize - 1);
-         y = Mathf.Clamp(y, 0, _gridConfig.gridSize - 1);
+         if (x < 0 || x >= _gridConfig.gridSize ||
+             y < 0 || y >= _gridConfig.gridSize)
+            return null;
 
          return new Vector2Int(x, y);
       }
