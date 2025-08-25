@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ba10b191fb4958b9e8a8b2c1dec9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkGameLoopService: {fileID: 2087474615}
+  gameLoopNetwork: {fileID: 2087474615}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

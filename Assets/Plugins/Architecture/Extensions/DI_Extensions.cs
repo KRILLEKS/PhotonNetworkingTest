@@ -10,7 +10,7 @@ namespace Plugins.Architecture.Extensions
       {
          foreach (var item in collection)
          {
-            container.Inject(item);
+            container.QueueForInject(item);
          }
       }
    }

@@ -16,12 +16,10 @@ namespace StateMachine.States
 
       public void Enter()
       {
-         _ticTacToeGameService.StartTurn();
       }
 
       public void Exit()
       {
-         _ticTacToeGameService.FinishTurn();
       }
    }
 }

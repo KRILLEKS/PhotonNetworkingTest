@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Models;
 using Services.GameScene.PrefabFactory;
 using Services.TicTacToeGrid;
@@ -27,7 +28,17 @@ namespace UI
 
       private void Start()
       {
-         
+         InitializeAsync().Forget();
+      }
+
+      private async UniTask InitializeAsync()
+      {
+         // We can invoke it inside grid service after initializing the model.
+         // I don't like such approach because then service would depend on View like in MVVM
+         // We can also have script that controls initialization order precisely. Which is good, but I didn't want to overcomplicate things
+         while (_ticTacToeGameModel == null || _ticTacToeGameModel.OnMarkChange == null)
+            await UniTask.Yield();
+
          _ticTacToeGameModel.OnMarkChange.Subscribe(changeEvent =>
                             {
                                Vector2Int position = changeEvent.Item1;
@@ -39,7 +50,6 @@ namespace UI
 
          _content = new GameObject("Marks");
       }
-      
 
       private void OnMarkChange(Vector2Int position, Marks mark)
       {

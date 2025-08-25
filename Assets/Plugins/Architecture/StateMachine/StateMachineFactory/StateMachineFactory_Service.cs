@@ -1,25 +1,28 @@
 using System;
 using System.Collections.Generic;
 using Plugins.Architecture.Extensions;
+using UnityEngine;
 using Zenject;
 
 namespace Plugins.Architecture.StateMachine.StateMachineFactory
 {
    public class StateMachineFactory_Service : IStateMachineFactory_Service
    {
-      private DiContainer _diContainer;
-
       [Inject]
-      private void Construct(DiContainer diContainer)
+      private void Construct()
       {
-         _diContainer = diContainer;
       }
 
-      public void SetStateMachine<TStateMachine>(List<IBaseState> states)
+      /// <summary>
+      /// </summary>
+      /// <param name="states"></param>
+      /// <param name="diContainer">diContainer defines binding scope</param>
+      /// <typeparam name="TStateMachine"></typeparam>
+      public void SetStateMachine<TStateMachine>(List<IBaseState> states, DiContainer diContainer)
       {
-         _diContainer.InjectAll(states);
+         diContainer.InjectAll(states);
          TStateMachine instance = (TStateMachine)Activator.CreateInstance(typeof (TStateMachine), states);
-         _diContainer.Bind<TStateMachine>().FromInstance(instance);
+         diContainer.Bind<TStateMachine>().FromInstance(instance);
       }
    }
 }

@@ -11587,7 +11587,7 @@ namespace Fusion.Editor {
 
 #region Assets/Photon/Fusion/Editor/FusionHierarchyWindowOverlay.cs
 
-﻿namespace Fusion.Editor {
+ namespace Fusion.Editor {
   using System;
   using Fusion.Analyzer;
   using UnityEditor;

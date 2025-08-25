@@ -1,6 +1,7 @@
 using System;
 using Models;
 using Services.GameScene.Input;
+using Services.GameScene.NetworkGameLoop_Service;
 using Services.TicTacToeGrid;
 using StaticData.Enums;
 using UniRx;
@@ -16,34 +17,48 @@ namespace Services.GameScene.TicTacToeGameController
       private IInput_Service _inputService;
       private ITicTacToeGrid_Service _gridService;
       private TicTacToeGame_Model _ticTacToeGameModel;
+      private GameLoop_Network _gameLoopNetwork;
+      private SessionData_Model _sessionDataModel;
 
       private CompositeDisposable _disposables = new CompositeDisposable();
+      private bool _yourTurn = false;
 
       [Inject]
       public void Construct(IInput_Service inputService,
                             ITicTacToeGrid_Service gridService,
-                            TicTacToeGame_Model ticTacToeGameModel)
+                            TicTacToeGame_Model ticTacToeGameModel,
+                            GameLoop_Network gameLoopNetwork,
+                            SessionData_Model sessionDataModel)
       {
          _inputService = inputService;
          _gridService = gridService;
          _ticTacToeGameModel = ticTacToeGameModel;
+         _gameLoopNetwork = gameLoopNetwork;
+         _sessionDataModel = sessionDataModel;
       }
 
       public void StartTurn()
       {
-            _inputService.OnLeftClick
-                         .Subscribe(OnLeftClick)
-                         .AddTo(_disposables);
+         _disposables = new CompositeDisposable();
+         _inputService.OnLeftClick
+                      .Subscribe(OnLeftClick)
+                      .AddTo(_disposables);
+         _yourTurn = true;
       }
 
       public void FinishTurn()
       {
-         
-            _disposables.Dispose();
+         _disposables.Dispose();
+         _disposables = null;
+         _yourTurn = false;
       }
 
       private void OnLeftClick(Vector2 worldPosition)
       {
+         Debug.Log("left click");
+         if (_yourTurn == false)
+            return;
+         
          Vector2Int? gridPosition = _gridService.WorldToGridPosition(worldPosition);
          // Debug.Log($"Clicked at grid position: {gridPosition}");
 
@@ -52,7 +67,8 @@ namespace Services.GameScene.TicTacToeGameController
             return;
 
          // Handle the game logic here (place X/O, check for win, etc.)
-         _ticTacToeGameModel.SetMark(gridPosition.Value.x, gridPosition.Value.y, (Marks)Random.Range(1, 3));
+         _gameLoopNetwork.PlayerFinishedTurn();
+         _gameLoopNetwork.RPC_PlaceMark(gridPosition.Value.x, gridPosition.Value.y, _sessionDataModel.Marks);
       }
 
       public void Dispose()
