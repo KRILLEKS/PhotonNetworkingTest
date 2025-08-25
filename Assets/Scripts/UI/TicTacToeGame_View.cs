@@ -27,6 +27,7 @@ namespace UI
 
       private void Start()
       {
+         
          _ticTacToeGameModel.OnMarkChange.Subscribe(changeEvent =>
                             {
                                Vector2Int position = changeEvent.Item1;
@@ -38,6 +39,7 @@ namespace UI
 
          _content = new GameObject("Marks");
       }
+      
 
       private void OnMarkChange(Vector2Int position, Marks mark)
       {

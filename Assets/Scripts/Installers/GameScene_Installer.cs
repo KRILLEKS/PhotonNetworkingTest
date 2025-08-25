@@ -3,17 +3,21 @@ using Models;
 using Plugins.Architecture.StateMachine;
 using Plugins.Architecture.StateMachine.StateMachineFactory;
 using Services.GameScene.Input;
+using Services.GameScene.NetworkGameLoop_Service;
 using Services.GameScene.PrefabFactory;
 using Services.GameScene.TicTacToeGameController;
 using Services.TicTacToeGrid;
 using StateMachine;
 using StateMachine.States;
+using UnityEngine;
 using Zenject;
 
 namespace Installers
 {
    public class GameScene_Installer : MonoInstaller
    {
+      [SerializeField] private NetworkGameLoop_Service networkGameLoopService;
+      
       public override void InstallBindings()
       {
          Container.BindInterfacesTo<TicTacToeGrid_Service>().AsSingle();
@@ -22,6 +26,9 @@ namespace Installers
          Container.BindInterfacesTo<GamePrefabFactory_Service>().AsSingle();
 
          Container.Bind<TicTacToeGame_Model>().AsSingle();
+         Container.Bind<SessionData_Model>().AsSingle();
+         
+         // Container.Bind<NetworkGameLoop_Service>().FromInstance(networkGameLoopService);
          
          BindStateMachine();
       }
