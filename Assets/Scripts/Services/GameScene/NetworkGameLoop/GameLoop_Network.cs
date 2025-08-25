@@ -6,6 +6,7 @@ using Models;
 using Plugins.Architecture.Extensions;
 using StateMachine;
 using StateMachine.States;
+using StaticData;
 using StaticData.Enums;
 using UnityEngine;
 using Zenject;
@@ -27,7 +28,7 @@ namespace Services.GameScene.NetworkGameLoop_Service
       private SessionData_Model _sessionDataModel;
 
       [Networked] private int CurrentTurnIndex { get; set; }
-      private List<PlayerRef> TurnOrder { get; set; }
+      private List<PlayerRef> TurnOrder { get; set; } // only host has this info
 
 
       [Inject]
@@ -59,13 +60,13 @@ namespace Services.GameScene.NetworkGameLoop_Service
 
          if (TurnOrder.Count == 2)
          {
-            RPC_SetMark(TurnOrder[0], Marks.Cross);
-            RPC_SetMark(TurnOrder[1], Marks.Circle);
+            RPC_SetSessionData(TurnOrder[0], Marks.Cross);
+            RPC_SetSessionData(TurnOrder[1], Marks.Circle);
          }
          // for testing only
          else
             foreach (var player in TurnOrder)
-               RPC_SetMark(player, Marks.Cross);
+               RPC_SetSessionData(player, Marks.Cross);
 
 
          // Set initial turn to first player
@@ -82,58 +83,51 @@ namespace Services.GameScene.NetworkGameLoop_Service
             else
                RPC_FinishTurn(player);
          }
-
-         RPC_TurnChanged(CurrentTurnIndex);
       }
-
-      public void PlayerFinishedTurn()
+      
+      [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+      private void RPC_SetSessionData([RpcTarget]PlayerRef playerRef, Marks mark)
       {
-         if (!IsMyTurn || !Object.HasStateAuthority)
-            return;
-
+         _sessionDataModel.Marks = mark;
+      }
+      
+      [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+     public void RPC_PlayerFinishedTurn()
+      {
          // Move to next player's turn
-         RPC_FinishTurn(Runner.LocalPlayer);
+         RPC_FinishTurn(TurnOrder[CurrentTurnIndex]);
 
          CurrentTurnIndex = (CurrentTurnIndex + 1) % TurnOrder.Count;
 
          // Set next player's state to YourTurn
          var nextPlayer = TurnOrder[CurrentTurnIndex];
          RPC_StartTurn(nextPlayer);
-
-         RPC_TurnChanged(CurrentTurnIndex);
       }
 
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      private void RPC_SetMark(PlayerRef playerRef, Marks mark)
-      {
-         _sessionDataModel.Marks = mark;
-      }
-
-      [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      private void RPC_TurnChanged(int turnIndex)
-      {
-      }
-
-      [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      private void RPC_FinishTurn(PlayerRef player)
+      private void RPC_FinishTurn([RpcTarget]PlayerRef player)
       {
          Debug.Log("Finish turn! " + player);
-         if (player != TurnOrder[CurrentTurnIndex])
-            Debug.LogWarning("User tried to finish not it's turn");
          _gameLoopStateMachine.Enter<WaitForOpponent_State>();
       }
 
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      private void RPC_StartTurn(PlayerRef player)
+      private void RPC_StartTurn([RpcTarget]PlayerRef player)
       {
          Debug.Log("Start turn! " + player);
          _gameLoopStateMachine.Enter<YourTurn_State>();
       }
 
+      [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+      public void RPC_RequestPlaceMark(int x, int y, Marks mark)
+      {
+         RPC_PlaceMark(x,y,mark);
+      }
+      
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      public void RPC_PlaceMark(int x, int y, Marks mark)
+      private void RPC_PlaceMark(int x, int y, Marks mark)
       {
          _ticTacToeGameModel.SetMark(x, y, mark);
-      }
+      } 
    }
 }

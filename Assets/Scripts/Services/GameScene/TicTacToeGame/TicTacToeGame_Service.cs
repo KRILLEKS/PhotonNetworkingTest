@@ -55,7 +55,7 @@ namespace Services.GameScene.TicTacToeGameController
 
       private void OnLeftClick(Vector2 worldPosition)
       {
-         Debug.Log("left click");
+         // Debug.Log("left click");
          if (_yourTurn == false)
             return;
          
@@ -66,9 +66,11 @@ namespace Services.GameScene.TicTacToeGameController
          if (gridPosition == null)
             return;
 
+         _yourTurn = false;
+
          // Handle the game logic here (place X/O, check for win, etc.)
-         _gameLoopNetwork.PlayerFinishedTurn();
-         _gameLoopNetwork.RPC_PlaceMark(gridPosition.Value.x, gridPosition.Value.y, _sessionDataModel.Marks);
+         _gameLoopNetwork.RPC_PlayerFinishedTurn();
+         _gameLoopNetwork.RPC_RequestPlaceMark(gridPosition.Value.x, gridPosition.Value.y, _sessionDataModel.Marks);
       }
 
       public void Dispose()

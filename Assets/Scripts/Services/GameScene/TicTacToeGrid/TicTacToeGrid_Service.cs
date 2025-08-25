@@ -5,7 +5,6 @@ using Services.ResourcesProvider;
 using StaticData;
 using StaticData.Configs;
 using UnityEngine;
-using UnityEngine;
 using Zenject;
 
 namespace Services.TicTacToeGrid
