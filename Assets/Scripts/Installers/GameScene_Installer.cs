@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using Models;
 using Plugins.Architecture.StateMachine;
 using Plugins.Architecture.StateMachine.StateMachineFactory;
 using Services.GameScene.Input;
+using Services.GameScene.PrefabFactory;
 using Services.GameScene.TicTacToeGameController;
 using Services.TicTacToeGrid;
 using StateMachine;
@@ -16,7 +18,10 @@ namespace Installers
       {
          Container.BindInterfacesTo<TicTacToeGrid_Service>().AsSingle();
          Container.BindInterfacesTo<Input_Service>().AsSingle();
-         Container.BindInterfacesTo<TicTacToeGameController_Service>().AsSingle();
+         Container.BindInterfacesTo<TicTacToeGame_Service>().AsSingle();
+         Container.BindInterfacesTo<GamePrefabFactory_Service>().AsSingle();
+
+         Container.Bind<TicTacToeGame_Model>().AsSingle();
          
          BindStateMachine();
       }

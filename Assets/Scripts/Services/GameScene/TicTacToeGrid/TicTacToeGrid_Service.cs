@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Models;
 using Services.ResourcesProvider;
 using StaticData;
 using StaticData.Configs;
@@ -12,6 +13,7 @@ namespace Services.TicTacToeGrid
    public class TicTacToeGrid_Service : ITicTacToeGrid_Service
    {
       private Grid_Config _gridConfig;
+      private TicTacToeGame_Model _ticTacToeGameModel;
 
       private GameObject _contentParent;
       private LineRenderer[] gridLines;
@@ -19,9 +21,10 @@ namespace Services.TicTacToeGrid
       private float totalGridSize;
 
       [Inject]
-      private void Construct(IResourcesProvider_Service resourcesProviderService)
+      private void Construct(IResourcesProvider_Service resourcesProviderService, TicTacToeGame_Model ticTacToeGameModel)
       {
          _gridConfig = resourcesProviderService.LoadResource<Grid_Config>(DataPaths_Record.GridConfig);
+         _ticTacToeGameModel = ticTacToeGameModel;
       }
 
       public void GenerateGrid()
@@ -40,6 +43,8 @@ namespace Services.TicTacToeGrid
          gridLines = new LineRenderer[(_gridConfig.gridSize + 1) * 2];
 
          CreateGridLines();
+         
+         _ticTacToeGameModel.Initialize(_gridConfig.gridSize);
       }
 
       private void CalculateGridSize()

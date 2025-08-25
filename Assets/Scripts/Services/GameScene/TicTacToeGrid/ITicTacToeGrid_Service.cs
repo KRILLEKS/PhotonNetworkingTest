@@ -7,5 +7,6 @@ namespace Services.TicTacToeGrid
       void GenerateGrid();
       Vector2Int? WorldToGridPosition(Vector3 worldPosition);
       Vector3 GridToWorldPosition(int x, int y);
+      float GetCellSize();
    }
 }
