@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GridConfig
   m_EditorClassIdentifier: 
   gridSize: 5
-  edgeOffset: 0.1
+  edgeOffset: 1
   MarksInRowToWin: 3
   lineMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   lineWidth: 0.05

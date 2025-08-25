@@ -10,6 +10,7 @@ using Services.GameScene.TicTacToeGameController;
 using Services.TicTacToeGrid;
 using StateMachine;
 using StateMachine.States;
+using UI;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +19,8 @@ namespace Installers
    public class GameScene_Installer : MonoInstaller
    {
       [SerializeField] private GameLoop_Network gameLoopNetwork;
+      [SerializeField] private GameEnd_UI gameEndUI; // it's not good to bind UI like that. Was made simply for showcase
+      [SerializeField] private TurnIndicator_UI turnIndicatorUI;
 
       public override void InstallBindings()
       {
@@ -29,7 +32,9 @@ namespace Installers
          Container.Bind<TicTacToeGame_Model>().AsSingle();
          Container.Bind<SessionData_Model>().AsSingle();
 
-         Container.Bind<GameLoop_Network>().FromInstance(gameLoopNetwork);
+         Container.Bind<GameLoop_Network>().FromInstance(gameLoopNetwork).AsSingle();
+         Container.Bind<GameEnd_UI>().FromInstance(gameEndUI).AsSingle();
+         Container.Bind<TurnIndicator_UI>().FromInstance(turnIndicatorUI).AsSingle();
          
          BindStateMachine();
       }

@@ -43,7 +43,6 @@ namespace UI
                             {
                                Vector2Int position = changeEvent.Item1;
                                Marks mark = changeEvent.Item2;
-
                                OnMarkChange(position, mark);
                             })
                             .AddTo(this); // Auto unsubscribe when destroyed 

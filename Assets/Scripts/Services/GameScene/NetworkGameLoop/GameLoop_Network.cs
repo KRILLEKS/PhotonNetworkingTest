@@ -9,6 +9,7 @@ using StateMachine;
 using StateMachine.States;
 using StaticData;
 using StaticData.Enums;
+using UI;
 using UnityEngine;
 using Zenject;
 
@@ -28,6 +29,8 @@ namespace Services.GameScene.NetworkGameLoop_Service
       private TicTacToeGame_Model _ticTacToeGameModel;
       private SessionData_Model _sessionDataModel;
       private ITicTacToeGame_Service _ticTacToeGameService;
+      private GameEnd_UI _gameEndUI;
+      private TurnIndicator_UI _turnIndicatorUI;
 
       [Networked] private int CurrentTurnIndex { get; set; }
       private List<PlayerRef> TurnOrder { get; set; } // only host has this info
@@ -37,12 +40,16 @@ namespace Services.GameScene.NetworkGameLoop_Service
       private void Construct(GameLoop_StateMachine gameLoopStateMachine,
                              TicTacToeGame_Model ticTacToeGameModel,
                              SessionData_Model sessionDataModel,
-                             ITicTacToeGame_Service ticTacToeGameService)
+                             ITicTacToeGame_Service ticTacToeGameService,
+                             GameEnd_UI gameEndUI,
+                             TurnIndicator_UI turnIndicatorUI)
       {
          _gameLoopStateMachine = gameLoopStateMachine;
          _ticTacToeGameModel = ticTacToeGameModel;
          _sessionDataModel = sessionDataModel;
          _ticTacToeGameService = ticTacToeGameService;
+         _gameEndUI = gameEndUI;
+         _turnIndicatorUI = turnIndicatorUI;
       }
 
       public override void Spawned()
@@ -95,6 +102,8 @@ namespace Services.GameScene.NetworkGameLoop_Service
       private void RPC_SetSessionData([RpcTarget] PlayerRef playerRef, Marks mark)
       {
          _sessionDataModel.Mark = mark;
+
+         _turnIndicatorUI.SetMarkImage(mark);
       }
 
       [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -146,15 +155,15 @@ namespace Services.GameScene.NetworkGameLoop_Service
       private void RPC_Win(Marks winnerMark)
       {
          if (_sessionDataModel.Mark == winnerMark)
-            Debug.Log("win!");
+            _gameEndUI.SetMenu("Win");
          else
-            Debug.Log("Lose");
+            _gameEndUI.SetMenu("Lose");
       }
 
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
       private void RPC_Draw()
       {
-         Debug.Log("Draw!");
+         _gameEndUI.SetMenu("Draw");
       }
    }
 }
