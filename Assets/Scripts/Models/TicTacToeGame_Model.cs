@@ -24,7 +24,7 @@ namespace Models
       {
          if (marks == null)
          {
-            Debug.LogError("Marks are not initialized");
+            Debug.LogError("Mark are not initialized");
             return;
          }
 

@@ -48,7 +48,7 @@ namespace UI
                             })
                             .AddTo(this); // Auto unsubscribe when destroyed 
 
-         _content = new GameObject("Marks");
+         _content = new GameObject("Mark");
       }
 
       private void OnMarkChange(Vector2Int position, Marks mark)

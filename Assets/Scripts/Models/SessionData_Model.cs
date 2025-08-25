@@ -6,6 +6,6 @@ namespace Models
    public class SessionData_Model
    {
       public Color Color;
-      public Marks Marks;
+      public Marks Mark;
    }
 }

@@ -2,7 +2,10 @@ using System;
 using Models;
 using Services.GameScene.Input;
 using Services.GameScene.NetworkGameLoop_Service;
+using Services.ResourcesProvider;
 using Services.TicTacToeGrid;
+using StaticData;
+using StaticData.Configs;
 using StaticData.Enums;
 using UniRx;
 using UnityEngine;
@@ -19,6 +22,7 @@ namespace Services.GameScene.TicTacToeGameController
       private TicTacToeGame_Model _ticTacToeGameModel;
       private GameLoop_Network _gameLoopNetwork;
       private SessionData_Model _sessionDataModel;
+      private Grid_Config _gridConfig;
 
       private CompositeDisposable _disposables = new CompositeDisposable();
       private bool _yourTurn = false;
@@ -28,13 +32,16 @@ namespace Services.GameScene.TicTacToeGameController
                             ITicTacToeGrid_Service gridService,
                             TicTacToeGame_Model ticTacToeGameModel,
                             GameLoop_Network gameLoopNetwork,
-                            SessionData_Model sessionDataModel)
+                            SessionData_Model sessionDataModel,
+                            IResourcesProvider_Service resourcesProviderService)
       {
          _inputService = inputService;
          _gridService = gridService;
          _ticTacToeGameModel = ticTacToeGameModel;
          _gameLoopNetwork = gameLoopNetwork;
          _sessionDataModel = sessionDataModel;
+
+         _gridConfig = resourcesProviderService.LoadResource<Grid_Config>(DataPaths_Record.GridConfig);
       }
 
       public void StartTurn()
@@ -58,7 +65,7 @@ namespace Services.GameScene.TicTacToeGameController
          // Debug.Log("left click");
          if (_yourTurn == false)
             return;
-         
+
          Vector2Int? gridPosition = _gridService.WorldToGridPosition(worldPosition);
          // Debug.Log($"Clicked at grid position: {gridPosition}");
 
@@ -70,8 +77,72 @@ namespace Services.GameScene.TicTacToeGameController
 
          // Handle the game logic here (place X/O, check for win, etc.)
          _gameLoopNetwork.RPC_PlayerFinishedTurn();
-         _gameLoopNetwork.RPC_RequestPlaceMark(gridPosition.Value.x, gridPosition.Value.y, _sessionDataModel.Marks);
+         _gameLoopNetwork.RPC_RequestPlaceMark(gridPosition.Value.x, gridPosition.Value.y, _sessionDataModel.Mark);
       }
+
+      public (bool isWin, Marks winnerMark, bool isDraw) CheckWin()
+      {
+         int winCondition = _gridConfig.MarksInRowToWin;
+         int gridSize = _gridConfig.gridSize;
+         bool hasEmptyCell = false;
+
+         // Check all possible win conditions
+         for (int x = 0; x < gridSize; x++)
+         {
+            for (int y = 0; y < gridSize; y++)
+            {
+               Marks currentMark = _ticTacToeGameModel.GetMark(x, y);
+               if (currentMark == Marks.None)
+               {
+                  hasEmptyCell = true;
+                  continue;
+               }
+
+               // Check horizontal win
+               if (x <= gridSize - winCondition && CheckDirection(x, y, 1, 0, currentMark))
+                  return (true, currentMark, false);
+
+               // Check vertical win
+               if (y <= gridSize - winCondition && CheckDirection(x, y, 0, 1, currentMark))
+                  return (true, currentMark, false);
+
+               // Check diagonal down-right win
+               if (x <= gridSize - winCondition && y <= gridSize - winCondition &&
+                   CheckDirection(x, y, 1, 1, currentMark))
+                  return (true, currentMark, false);
+
+               // Check diagonal down-left win
+               if (x >= winCondition - 1 && y <= gridSize - winCondition &&
+                   CheckDirection(x, y, -1, 1, currentMark))
+                  return (true, currentMark, false);
+            }
+         }
+
+         // If no win and no empty cells, it's a draw
+         return (false, Marks.None, hasEmptyCell == false);
+
+         bool CheckDirection(int startX,
+                             int startY,
+                             int deltaX,
+                             int deltaY,
+                             Marks mark)
+         {
+            for (int i = 0; i < winCondition; i++)
+            {
+               int x = startX + i * deltaX;
+               int y = startY + i * deltaY;
+               
+               if (x < 0 || x >= gridSize || y < 0 || y >= gridSize)
+                  return false; 
+
+               if (_ticTacToeGameModel.GetMark(x, y) != mark)
+                  return false;
+            }
+
+            return true;
+         }
+      }
+
 
       public void Dispose()
       {

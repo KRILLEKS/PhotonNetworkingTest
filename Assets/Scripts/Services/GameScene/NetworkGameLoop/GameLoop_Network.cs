@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Fusion;
 using Models;
 using Plugins.Architecture.Extensions;
+using Services.GameScene.TicTacToeGameController;
 using StateMachine;
 using StateMachine.States;
 using StaticData;
@@ -26,17 +27,22 @@ namespace Services.GameScene.NetworkGameLoop_Service
       private GameLoop_StateMachine _gameLoopStateMachine;
       private TicTacToeGame_Model _ticTacToeGameModel;
       private SessionData_Model _sessionDataModel;
+      private ITicTacToeGame_Service _ticTacToeGameService;
 
       [Networked] private int CurrentTurnIndex { get; set; }
       private List<PlayerRef> TurnOrder { get; set; } // only host has this info
 
 
       [Inject]
-      private void Construct(GameLoop_StateMachine gameLoopStateMachine, TicTacToeGame_Model ticTacToeGameModel, SessionData_Model sessionDataModel)
+      private void Construct(GameLoop_StateMachine gameLoopStateMachine,
+                             TicTacToeGame_Model ticTacToeGameModel,
+                             SessionData_Model sessionDataModel,
+                             ITicTacToeGame_Service ticTacToeGameService)
       {
          _gameLoopStateMachine = gameLoopStateMachine;
          _ticTacToeGameModel = ticTacToeGameModel;
          _sessionDataModel = sessionDataModel;
+         _ticTacToeGameService = ticTacToeGameService;
       }
 
       public override void Spawned()
@@ -84,15 +90,15 @@ namespace Services.GameScene.NetworkGameLoop_Service
                RPC_FinishTurn(player);
          }
       }
-      
+
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      private void RPC_SetSessionData([RpcTarget]PlayerRef playerRef, Marks mark)
+      private void RPC_SetSessionData([RpcTarget] PlayerRef playerRef, Marks mark)
       {
-         _sessionDataModel.Marks = mark;
+         _sessionDataModel.Mark = mark;
       }
-      
+
       [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-     public void RPC_PlayerFinishedTurn()
+      public void RPC_PlayerFinishedTurn()
       {
          // Move to next player's turn
          RPC_FinishTurn(TurnOrder[CurrentTurnIndex]);
@@ -105,14 +111,14 @@ namespace Services.GameScene.NetworkGameLoop_Service
       }
 
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      private void RPC_FinishTurn([RpcTarget]PlayerRef player)
+      private void RPC_FinishTurn([RpcTarget] PlayerRef player)
       {
          Debug.Log("Finish turn! " + player);
          _gameLoopStateMachine.Enter<WaitForOpponent_State>();
       }
 
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      private void RPC_StartTurn([RpcTarget]PlayerRef player)
+      private void RPC_StartTurn([RpcTarget] PlayerRef player)
       {
          Debug.Log("Start turn! " + player);
          _gameLoopStateMachine.Enter<YourTurn_State>();
@@ -121,13 +127,34 @@ namespace Services.GameScene.NetworkGameLoop_Service
       [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
       public void RPC_RequestPlaceMark(int x, int y, Marks mark)
       {
-         RPC_PlaceMark(x,y,mark);
+         RPC_PlaceMark(x, y, mark);
       }
-      
+
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
       private void RPC_PlaceMark(int x, int y, Marks mark)
       {
          _ticTacToeGameModel.SetMark(x, y, mark);
-      } 
+
+         (bool isWin, Marks winnerMark, bool isDraw) winInfo = _ticTacToeGameService.CheckWin();
+         if (winInfo.isWin)
+            RPC_Win(winInfo.winnerMark);
+         else if (winInfo.isDraw)
+            RPC_Draw();
+      }
+
+      [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+      private void RPC_Win(Marks winnerMark)
+      {
+         if (_sessionDataModel.Mark == winnerMark)
+            Debug.Log("win!");
+         else
+            Debug.Log("Lose");
+      }
+
+      [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+      private void RPC_Draw()
+      {
+         Debug.Log("Draw!");
+      }
    }
 }
