@@ -15,6 +15,7 @@ using Zenject;
 
 namespace Services.GameScene.NetworkGameLoop_Service
 {
+   // Controls game loop
    public class GameLoop_Network : NetworkBehaviour
    {
       public bool IsMyTurn
@@ -26,11 +27,10 @@ namespace Services.GameScene.NetworkGameLoop_Service
       }
 
       private GameLoop_StateMachine _gameLoopStateMachine;
-      private TicTacToeGame_Model _ticTacToeGameModel;
       private SessionData_Model _sessionDataModel;
       private ITicTacToeGame_Service _ticTacToeGameService;
-      private GameEnd_UI _gameEndUI;
       private TurnIndicator_UI _turnIndicatorUI;
+      private GameEnd_UI _gameEndUI;
 
       [Networked] private int CurrentTurnIndex { get; set; }
       private List<PlayerRef> TurnOrder { get; set; } // only host has this info
@@ -38,14 +38,12 @@ namespace Services.GameScene.NetworkGameLoop_Service
 
       [Inject]
       private void Construct(GameLoop_StateMachine gameLoopStateMachine,
-                             TicTacToeGame_Model ticTacToeGameModel,
                              SessionData_Model sessionDataModel,
                              ITicTacToeGame_Service ticTacToeGameService,
                              GameEnd_UI gameEndUI,
                              TurnIndicator_UI turnIndicatorUI)
       {
          _gameLoopStateMachine = gameLoopStateMachine;
-         _ticTacToeGameModel = ticTacToeGameModel;
          _sessionDataModel = sessionDataModel;
          _ticTacToeGameService = ticTacToeGameService;
          _gameEndUI = gameEndUI;
@@ -134,16 +132,8 @@ namespace Services.GameScene.NetworkGameLoop_Service
       }
 
       [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-      public void RPC_RequestPlaceMark(int x, int y, Marks mark)
+      public void RPC_CheckWin()
       {
-         RPC_PlaceMark(x, y, mark);
-      }
-
-      [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      private void RPC_PlaceMark(int x, int y, Marks mark)
-      {
-         _ticTacToeGameModel.SetMark(x, y, mark);
-
          (bool isWin, Marks winnerMark, bool isDraw) winInfo = _ticTacToeGameService.CheckWin();
          if (winInfo.isWin)
             RPC_Win(winInfo.winnerMark);

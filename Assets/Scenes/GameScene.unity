@@ -349,6 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameLoopNetwork: {fileID: 2087474615}
+  gameLoopBridgeNetwork: {fileID: 2087474618}
   gameEndUI: {fileID: 388857870}
   turnIndicatorUI: {fileID: 1878942537}
 --- !u!1 &705507993
@@ -1198,6 +1199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087474613}
   - component: {fileID: 2087474615}
+  - component: {fileID: 2087474618}
   - component: {fileID: 2087474617}
   m_Layer: 0
   m_Name: Network
@@ -1251,7 +1253,20 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 2087474615}
+  - {fileID: 2087474618}
   ForceRemoteRenderTimeframe: 0
+--- !u!114 &2087474618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087474612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55de9c43399a49daada7a4e64b75ccda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2087835679
 GameObject:
   m_ObjectHideFlags: 0

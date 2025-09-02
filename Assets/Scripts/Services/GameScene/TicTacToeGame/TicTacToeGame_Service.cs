@@ -21,6 +21,7 @@ namespace Services.GameScene.TicTacToeGameController
       private ITicTacToeGrid_Service _gridService;
       private TicTacToeGame_Model _ticTacToeGameModel;
       private GameLoop_Network _gameLoopNetwork;
+      private GameLoopBridge_Network _gameLoopBridgeNetwork;
       private SessionData_Model _sessionDataModel;
       private Grid_Config _gridConfig;
 
@@ -32,6 +33,7 @@ namespace Services.GameScene.TicTacToeGameController
                             ITicTacToeGrid_Service gridService,
                             TicTacToeGame_Model ticTacToeGameModel,
                             GameLoop_Network gameLoopNetwork,
+                            GameLoopBridge_Network gameLoopBridgeNetwork,
                             SessionData_Model sessionDataModel,
                             IResourcesProvider_Service resourcesProviderService)
       {
@@ -39,6 +41,7 @@ namespace Services.GameScene.TicTacToeGameController
          _gridService = gridService;
          _ticTacToeGameModel = ticTacToeGameModel;
          _gameLoopNetwork = gameLoopNetwork;
+         _gameLoopBridgeNetwork = gameLoopBridgeNetwork;
          _sessionDataModel = sessionDataModel;
 
          _gridConfig = resourcesProviderService.LoadResource<Grid_Config>(DataPaths_Record.GridConfig);
@@ -75,9 +78,9 @@ namespace Services.GameScene.TicTacToeGameController
 
          _yourTurn = false;
 
-         // Handle the game logic here (place X/O, check for win, etc.)
+         _gameLoopBridgeNetwork.RPC_RequestPlaceMark(gridPosition.Value.x, gridPosition.Value.y, _sessionDataModel.Mark);
          _gameLoopNetwork.RPC_PlayerFinishedTurn();
-         _gameLoopNetwork.RPC_RequestPlaceMark(gridPosition.Value.x, gridPosition.Value.y, _sessionDataModel.Mark);
+         _gameLoopNetwork.RPC_CheckWin();
       }
 
       public (bool isWin, Marks winnerMark, bool isDraw) CheckWin()

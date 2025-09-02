@@ -19,6 +19,7 @@ namespace Installers
    public class GameScene_Installer : MonoInstaller
    {
       [SerializeField] private GameLoop_Network gameLoopNetwork;
+      [SerializeField] private GameLoopBridge_Network gameLoopBridgeNetwork;
       [SerializeField] private GameEnd_UI gameEndUI; // it's not good to bind UI like that. Was made simply for showcase
       [SerializeField] private TurnIndicator_UI turnIndicatorUI;
 
@@ -33,6 +34,7 @@ namespace Installers
          Container.Bind<SessionData_Model>().AsSingle();
 
          Container.Bind<GameLoop_Network>().FromInstance(gameLoopNetwork).AsSingle();
+         Container.Bind<GameLoopBridge_Network>().FromInstance(gameLoopBridgeNetwork).AsSingle();
          Container.Bind<GameEnd_UI>().FromInstance(gameEndUI).AsSingle();
          Container.Bind<TurnIndicator_UI>().FromInstance(turnIndicatorUI).AsSingle();
          
