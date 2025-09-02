@@ -5,6 +5,6 @@ namespace Services.GameScene.PrefabFactory
 {
    public interface IGamePrefabFactory_Service
    {
-      GameObject SpawnMark(Marks mark, Vector3 position, Transform parent);
+      GameObject SpawnMark(Marks_Enum mark, Vector3 position, Transform parent);
    }
 }

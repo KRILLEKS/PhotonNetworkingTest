@@ -1,5 +1,6 @@
 using System;
 using Services.GameScene.NetworkGameLoop_Service;
+using StaticData.Enums;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -25,10 +26,17 @@ namespace UI
       private void Start()
       {
          HideMenu();
-         
+
          rematchButton.onClick.AddListener(VoteForRematch);
-         
+
          _gameLoopNetwork.BeforeRematch.Subscribe(_ => HideMenu())
+                         .AddTo(this);
+         
+         _gameLoopNetwork.OnWin.Subscribe(_ => SetMenu("Win"))
+                         .AddTo(this);
+         _gameLoopNetwork.OnDraw.Subscribe(_ => SetMenu("Draw"))
+                         .AddTo(this);
+         _gameLoopNetwork.OnLose.Subscribe(_ => SetMenu("Lose"))
                          .AddTo(this);
       }
 
@@ -40,6 +48,7 @@ namespace UI
       public void SetMenu(string text)
       {
          content.SetActive(true);
+
          textTMP.text = text;
       }
 

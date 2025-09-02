@@ -30,12 +30,14 @@ namespace Services.GameScene.NetworkGameLoop_Service
       }
 
       public Subject<Unit> BeforeRematch = new Subject<Unit>();
+      public Subject<Unit> OnWin = new Subject<Unit>();
+      public Subject<Unit> OnDraw = new Subject<Unit>();
+      public Subject<Unit> OnLose = new Subject<Unit>();
 
       private GameLoop_StateMachine _gameLoopStateMachine;
       private SessionData_Model _sessionDataModel;
       private ITicTacToeGame_Service _ticTacToeGameService;
       private TurnIndicator_UI _turnIndicatorUI;
-      private GameEnd_UI _gameEndUI;
 
       [Networked] private int CurrentTurnIndex { get; set; }
       private List<PlayerRef> TurnOrder { get; set; } // only host has this info
@@ -46,13 +48,11 @@ namespace Services.GameScene.NetworkGameLoop_Service
       private void Construct(GameLoop_StateMachine gameLoopStateMachine,
                              SessionData_Model sessionDataModel,
                              ITicTacToeGame_Service ticTacToeGameService,
-                             GameEnd_UI gameEndUI,
                              TurnIndicator_UI turnIndicatorUI)
       {
          _gameLoopStateMachine = gameLoopStateMachine;
          _sessionDataModel = sessionDataModel;
          _ticTacToeGameService = ticTacToeGameService;
-         _gameEndUI = gameEndUI;
          _turnIndicatorUI = turnIndicatorUI;
       }
 
@@ -69,7 +69,7 @@ namespace Services.GameScene.NetworkGameLoop_Service
       {
          if (Object.HasStateAuthority == false)
             return;
-         
+
          RematchVotes = new List<PlayerRef>();
 
          // Get all players and create random turn order
@@ -82,13 +82,13 @@ namespace Services.GameScene.NetworkGameLoop_Service
 
          if (TurnOrder.Count == 2)
          {
-            RPC_SetSessionData(TurnOrder[0], Marks.Cross);
-            RPC_SetSessionData(TurnOrder[1], Marks.Circle);
+            RPC_SetSessionData(TurnOrder[0], Marks_Enum.Cross);
+            RPC_SetSessionData(TurnOrder[1], Marks_Enum.Circle);
          }
          // for testing only
          else
             foreach (var player in TurnOrder)
-               RPC_SetSessionData(player, Marks.Cross);
+               RPC_SetSessionData(player, Marks_Enum.Cross);
 
          // Set initial turn to first player
          CurrentTurnIndex = 0;
@@ -98,7 +98,7 @@ namespace Services.GameScene.NetworkGameLoop_Service
       {
          if (Object.HasStateAuthority == false)
             return;
-         
+
          // Initialize player states
          foreach (var player in TurnOrder)
          {
@@ -110,7 +110,7 @@ namespace Services.GameScene.NetworkGameLoop_Service
       }
 
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      private void RPC_SetSessionData([RpcTarget] PlayerRef playerRef, Marks mark)
+      private void RPC_SetSessionData([RpcTarget] PlayerRef playerRef, Marks_Enum mark)
       {
          _sessionDataModel.Mark = mark;
 
@@ -147,26 +147,26 @@ namespace Services.GameScene.NetworkGameLoop_Service
       [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
       public void RPC_CheckWin()
       {
-         (bool isWin, Marks winnerMark, bool isDraw) winInfo = _ticTacToeGameService.CheckWin();
+         (bool isWin, Marks_Enum winnerMark, bool isDraw) winInfo = _ticTacToeGameService.CheckWin();
          if (winInfo.isWin)
-            RPC_Win(winInfo.winnerMark);
+            RPC_WinLose(winInfo.winnerMark);
          else if (winInfo.isDraw)
             RPC_Draw();
       }
 
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-      private void RPC_Win(Marks winnerMark)
+      private void RPC_WinLose(Marks_Enum winnerMark)
       {
          if (_sessionDataModel.Mark == winnerMark)
-            _gameEndUI.SetMenu("Win");
+            OnWin?.OnNext(Unit.Default);
          else
-            _gameEndUI.SetMenu("Lose");
+            OnLose?.OnNext(Unit.Default);
       }
 
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
       private void RPC_Draw()
       {
-         _gameEndUI.SetMenu("Draw");
+         OnDraw?.OnNext(Unit.Default);
       }
 
       [Rpc(RpcSources.All, RpcTargets.StateAuthority)]

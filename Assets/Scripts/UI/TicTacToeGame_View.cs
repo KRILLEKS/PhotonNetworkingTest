@@ -42,7 +42,7 @@ namespace UI
          _ticTacToeGameModel.OnMarkChange.Subscribe(changeEvent =>
                             {
                                Vector2Int position = changeEvent.Item1;
-                               Marks mark = changeEvent.Item2;
+                               Marks_Enum mark = changeEvent.Item2;
                                OnMarkChange(position, mark);
                             })
                             .AddTo(this); // Auto unsubscribe when destroyed 
@@ -52,7 +52,7 @@ namespace UI
          _content = new GameObject("Mark");
       }
 
-      private void OnMarkChange(Vector2Int position, Marks mark)
+      private void OnMarkChange(Vector2Int position, Marks_Enum mark)
       {
          Debug.Log($"Mark changed at {position} to {mark}");
          Vector3 worldPosition = _ticTacToeGridService.GridToWorldPosition(position.x, position.y);

@@ -89,7 +89,7 @@ namespace Services.GameScene.TicTacToeGameController
          Vector2Int? gridPosition = _gridService.WorldToGridPosition(worldPosition);
          // Debug.Log($"Clicked at grid position: {gridPosition}");
 
-         if (gridPosition == null || _ticTacToeGameModel.GetMark(gridPosition.Value.x, gridPosition.Value.y) != Marks.None)
+         if (gridPosition == null || _ticTacToeGameModel.GetMark(gridPosition.Value.x, gridPosition.Value.y) != Marks_Enum.None)
             return;
 
          _yourTurn = false;
@@ -99,7 +99,7 @@ namespace Services.GameScene.TicTacToeGameController
          _gameLoopNetwork.RPC_CheckWin();
       }
 
-      public (bool isWin, Marks winnerMark, bool isDraw) CheckWin()
+      public (bool isWin, Marks_Enum winnerMark, bool isDraw) CheckWin()
       {
          int winCondition = _gridConfig.MarksInRowToWin;
          int gridSize = _gridConfig.gridSize;
@@ -110,8 +110,8 @@ namespace Services.GameScene.TicTacToeGameController
          {
             for (int y = 0; y < gridSize; y++)
             {
-               Marks currentMark = _ticTacToeGameModel.GetMark(x, y);
-               if (currentMark == Marks.None)
+               Marks_Enum currentMark = _ticTacToeGameModel.GetMark(x, y);
+               if (currentMark == Marks_Enum.None)
                {
                   hasEmptyCell = true;
                   continue;
@@ -138,13 +138,13 @@ namespace Services.GameScene.TicTacToeGameController
          }
 
          // If no win and no empty cells, it's a draw
-         return (false, Marks.None, hasEmptyCell == false);
+         return (false, Marks_Enum.None, hasEmptyCell == false);
 
          bool CheckDirection(int startX,
                              int startY,
                              int deltaX,
                              int deltaY,
-                             Marks mark)
+                             Marks_Enum mark)
          {
             for (int i = 0; i < winCondition; i++)
             {

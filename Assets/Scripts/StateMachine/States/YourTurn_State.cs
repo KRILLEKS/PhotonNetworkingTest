@@ -11,7 +11,7 @@ namespace StateMachine.States
    {
       private ITicTacToeGame_Service _ticTacToeGame;
       private TurnIndicator_UI _turnIndicatorUI;
-      
+
       [Inject]
       private void Construct(ITicTacToeGame_Service ticTacToeGameService, TurnIndicator_UI turnIndicatorUI)
       {

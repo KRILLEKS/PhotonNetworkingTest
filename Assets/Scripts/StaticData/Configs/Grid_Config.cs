@@ -14,5 +14,8 @@ namespace StaticData.Configs
       public Material lineMaterial;
       public float lineWidth = 0.05f;
       public Color lineColor = Color.white;
+
+      [Header("Mark Settings")]
+      [Range(0, 0.8f)] public float markPadding = 0.5f;
    }
 }

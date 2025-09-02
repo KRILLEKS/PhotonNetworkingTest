@@ -1,6 +1,6 @@
 namespace StaticData.Enums
 {
-   public enum Marks
+   public enum Marks_Enum
    {
       None = 0,
       Circle = 1,

@@ -16,9 +16,9 @@ public class TurnIndicator_UI : MonoBehaviour
       SetTurnState(false);
    }
 
-   public void SetMarkImage(Marks mark)
+   public void SetMarkImage(Marks_Enum mark)
    {
-      if (mark == Marks.Circle)
+      if (mark == Marks_Enum.Circle)
       {
          circleGO.SetActive(true);
          crossGO.SetActive(false);
