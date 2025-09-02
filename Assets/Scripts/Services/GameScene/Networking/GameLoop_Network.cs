@@ -10,8 +10,11 @@ using StateMachine.States;
 using StaticData;
 using StaticData.Enums;
 using UI;
+using UniRx;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
+using Unit = UniRx.Unit;
 
 namespace Services.GameScene.NetworkGameLoop_Service
 {
@@ -26,6 +29,8 @@ namespace Services.GameScene.NetworkGameLoop_Service
          }
       }
 
+      public Subject<Unit> BeforeRematch = new Subject<Unit>();
+
       private GameLoop_StateMachine _gameLoopStateMachine;
       private SessionData_Model _sessionDataModel;
       private ITicTacToeGame_Service _ticTacToeGameService;
@@ -34,6 +39,7 @@ namespace Services.GameScene.NetworkGameLoop_Service
 
       [Networked] private int CurrentTurnIndex { get; set; }
       private List<PlayerRef> TurnOrder { get; set; } // only host has this info
+      private List<PlayerRef> RematchVotes { get; set; }
 
 
       [Inject]
@@ -61,6 +67,11 @@ namespace Services.GameScene.NetworkGameLoop_Service
 
       private void InitializeGame()
       {
+         if (Object.HasStateAuthority == false)
+            return;
+         
+         RematchVotes = new List<PlayerRef>();
+
          // Get all players and create random turn order
          var players = new List<PlayerRef>(Runner.ActivePlayers);
          players.Shuffle(); // Randomize turn order
@@ -79,13 +90,15 @@ namespace Services.GameScene.NetworkGameLoop_Service
             foreach (var player in TurnOrder)
                RPC_SetSessionData(player, Marks.Cross);
 
-
          // Set initial turn to first player
          CurrentTurnIndex = 0;
       }
 
       public void StartGame()
       {
+         if (Object.HasStateAuthority == false)
+            return;
+         
          // Initialize player states
          foreach (var player in TurnOrder)
          {
@@ -154,6 +167,30 @@ namespace Services.GameScene.NetworkGameLoop_Service
       private void RPC_Draw()
       {
          _gameEndUI.SetMenu("Draw");
+      }
+
+      [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+      public void RPC_VoteForRematch(RpcInfo rpcInfo = default)
+      {
+         PlayerRef playerRef = rpcInfo.Source;
+         if (RematchVotes.Contains(playerRef))
+            return;
+
+         RematchVotes.Add(playerRef);
+         Debug.Log("Votes to rematch: " + RematchVotes.Count);
+
+         // all players vote for rematch
+         if (RematchVotes.Count == TurnOrder.Count)
+            RPC_Rematch();
+      }
+
+      [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+      private void RPC_Rematch()
+      {
+         BeforeRematch?.OnNext(Unit.Default);
+         Debug.Log("Rematch!");
+         InitializeGame();
+         StartGame();
       }
    }
 }

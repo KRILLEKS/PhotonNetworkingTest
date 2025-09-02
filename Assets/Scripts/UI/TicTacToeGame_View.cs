@@ -47,6 +47,8 @@ namespace UI
                             })
                             .AddTo(this); // Auto unsubscribe when destroyed 
 
+         _ticTacToeGameModel.OnReset.Subscribe(_ => Reset());
+
          _content = new GameObject("Mark");
       }
 
@@ -55,6 +57,12 @@ namespace UI
          Debug.Log($"Mark changed at {position} to {mark}");
          Vector3 worldPosition = _ticTacToeGridService.GridToWorldPosition(position.x, position.y);
          _gamePrefabFactoryService.SpawnMark(mark, worldPosition, _content.transform);
+      }
+
+      private void Reset()
+      {
+         DestroyImmediate(_content);
+         _content = new GameObject("Mark");
       }
    }
 }

@@ -15,7 +15,8 @@ using Random = UnityEngine.Random;
 namespace Services.GameScene.TicTacToeGameController
 {
    public class TicTacToeGame_Service : ITicTacToeGame_Service,
-                                        IDisposable
+                                        IDisposable,
+                                        IInitializable
    {
       private IInput_Service _inputService;
       private ITicTacToeGrid_Service _gridService;
@@ -26,6 +27,7 @@ namespace Services.GameScene.TicTacToeGameController
       private Grid_Config _gridConfig;
 
       private CompositeDisposable _disposables = new CompositeDisposable();
+      private CompositeDisposable _turnDisposables = new CompositeDisposable();
       private bool _yourTurn = false;
 
       [Inject]
@@ -47,22 +49,34 @@ namespace Services.GameScene.TicTacToeGameController
          _gridConfig = resourcesProviderService.LoadResource<Grid_Config>(DataPaths_Record.GridConfig);
       }
 
-      public void StartTurn()
+      public void Initialize()
       {
          _disposables = new CompositeDisposable();
+         _gameLoopNetwork.BeforeRematch.Subscribe(_ => Reset())
+                         .AddTo(_disposables);
+      }
+
+      private void Reset()
+      {
+         _ticTacToeGameModel.Reset();
+      }
+
+      public void StartTurn()
+      {
+         _turnDisposables = new CompositeDisposable();
          _inputService.OnLeftClick
                       .Subscribe(OnLeftClick)
-                      .AddTo(_disposables);
+                      .AddTo(_turnDisposables);
          _yourTurn = true;
       }
 
       public void FinishTurn()
       {
-         _disposables.Dispose();
-         _disposables = null;
+         _turnDisposables.Dispose();
+         _turnDisposables = null;
          _yourTurn = false;
       }
-
+      
       private void OnLeftClick(Vector2 worldPosition)
       {
          // Debug.Log("left click");
@@ -136,9 +150,9 @@ namespace Services.GameScene.TicTacToeGameController
             {
                int x = startX + i * deltaX;
                int y = startY + i * deltaY;
-               
+
                if (x < 0 || x >= gridSize || y < 0 || y >= gridSize)
-                  return false; 
+                  return false;
 
                if (_ticTacToeGameModel.GetMark(x, y) != mark)
                   return false;
@@ -151,6 +165,8 @@ namespace Services.GameScene.TicTacToeGameController
 
       public void Dispose()
       {
+         _disposables.Dispose();
+         _turnDisposables.Dispose();
       }
    }
 }

@@ -7,9 +7,16 @@ namespace Models
    public class TicTacToeGame_Model
    {
       public Subject<(Vector2Int, Marks)> OnMarkChange = new Subject<(Vector2Int, Marks)>();
+      public Subject<Unit> OnReset = new Subject<Unit>();
 
       private Marks[,] marks;
 
+      public void Reset()
+      {
+         Initialize(marks.GetLength(0));
+         OnReset?.OnNext(Unit.Default);
+      }
+      
       public void Initialize(int gridSize)
       {
          var marksArray = new Marks[gridSize, gridSize];
