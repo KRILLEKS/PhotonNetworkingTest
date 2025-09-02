@@ -8,8 +8,6 @@ namespace Models
    {
       public Subject<Marks_Enum> OnMarkChange = new Subject<Marks_Enum>();
 
-      public Color Color;
-
       public Marks_Enum Mark
       {
          get

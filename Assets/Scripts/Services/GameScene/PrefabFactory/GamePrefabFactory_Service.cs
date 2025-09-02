@@ -1,3 +1,4 @@
+using Models;
 using Services.ResourcesProvider;
 using Services.TicTacToeGrid;
 using StaticData;
@@ -12,13 +13,16 @@ namespace Services.GameScene.PrefabFactory
    {
       private IResourcesProvider_Service _resourcesProviderService;
       private ITicTacToeGrid_Service _ticTacToeGridService;
+      private SessionData_Model _sessionDataModel;
+      
       private Grid_Config _gridConfig;
 
       [Inject]
-      private void Construct(IResourcesProvider_Service resourcesProviderService, ITicTacToeGrid_Service ticTacToeGridService)
+      private void Construct(IResourcesProvider_Service resourcesProviderService, ITicTacToeGrid_Service ticTacToeGridService, SessionData_Model sessionDataModel)
       {
          _resourcesProviderService = resourcesProviderService;
          _ticTacToeGridService = ticTacToeGridService;
+         _sessionDataModel = sessionDataModel;
       }
       public void Initialize()
       {
@@ -35,6 +39,8 @@ namespace Services.GameScene.PrefabFactory
          }
 
          GameObject prefab = _resourcesProviderService.LoadResource<GameObject>(path);
+         Color color = mark == _sessionDataModel.Mark ? Color.blue : Color.red;
+         prefab.GetComponentInChildren<SpriteRenderer>().color = color;
          var instance = Object.Instantiate(prefab, position, Quaternion.identity, parent);
 
          // Scale the mark to fit the cell
