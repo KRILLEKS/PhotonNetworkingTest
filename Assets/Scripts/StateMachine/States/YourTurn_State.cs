@@ -1,6 +1,7 @@
 using Services.GameScene.Input;
 using Services.GameScene.TicTacToeGameController;
 using Services.ResourcesProvider;
+using UniRx;
 using UnityEngine;
 using Zenject;
 using IState = Plugins.Architecture.StateMachine.IState;
@@ -9,26 +10,29 @@ namespace StateMachine.States
 {
    public class YourTurn_State : IState
    {
+      public Subject<Unit> OnYourTurnStart = new Subject<Unit>();
+      public Subject<Unit> OnYourTurnEnd = new Subject<Unit>();
+
       private ITicTacToeGame_Service _ticTacToeGame;
-      private TurnIndicator_UI _turnIndicatorUI;
 
       [Inject]
-      private void Construct(ITicTacToeGame_Service ticTacToeGameService, TurnIndicator_UI turnIndicatorUI)
+      private void Construct(ITicTacToeGame_Service ticTacToeGameService)
       {
          _ticTacToeGame = ticTacToeGameService;
-         _turnIndicatorUI = turnIndicatorUI;
       }
 
       public void Enter()
       {
+         OnYourTurnStart?.OnNext(Unit.Default);
+         
          _ticTacToeGame.StartTurn();
-         _turnIndicatorUI.SetTurnState(true);
       }
 
       public void Exit()
       {
+         OnYourTurnEnd?.OnNext(Unit.Default);
+         
          _ticTacToeGame.FinishTurn();
-         _turnIndicatorUI.SetTurnState(false);
       }
    }
 }

@@ -1,9 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Models;
+using StateMachine.States;
 using StaticData.Enums;
 using TMPro;
+using UniRx;
 using UnityEngine;
+using Zenject;
 
 public class TurnIndicator_UI : MonoBehaviour
 {
@@ -11,12 +15,30 @@ public class TurnIndicator_UI : MonoBehaviour
    [SerializeField] private GameObject circleGO;
    [SerializeField] private GameObject crossGO;
 
+   private YourTurn_State _yourTurnState;
+   private SessionData_Model _sessionDataModel;
+
+   [Inject]
+   private void Construct(YourTurn_State yourTurnState, SessionData_Model sessionDataModel)
+   {
+      _yourTurnState = yourTurnState;
+      _sessionDataModel = sessionDataModel;
+   }
+
    private void Start()
    {
       SetTurnState(false);
+
+      _sessionDataModel.OnMarkChange.Subscribe(SetMarkImage).AddTo(this);
+
+      _yourTurnState.OnYourTurnStart.Subscribe(_ => SetTurnState(true))
+                    .AddTo(this);
+
+      _yourTurnState.OnYourTurnEnd.Subscribe(_ => SetTurnState(false))
+                    .AddTo(this);
    }
 
-   public void SetMarkImage(Marks_Enum mark)
+   private void SetMarkImage(Marks_Enum mark)
    {
       if (mark == Marks_Enum.Circle)
       {

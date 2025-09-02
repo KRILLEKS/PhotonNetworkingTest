@@ -37,7 +37,6 @@ namespace Services.GameScene.NetworkGameLoop_Service
       private GameLoop_StateMachine _gameLoopStateMachine;
       private SessionData_Model _sessionDataModel;
       private ITicTacToeGame_Service _ticTacToeGameService;
-      private TurnIndicator_UI _turnIndicatorUI;
 
       [Networked] private int CurrentTurnIndex { get; set; }
       private List<PlayerRef> TurnOrder { get; set; } // only host has this info
@@ -47,13 +46,11 @@ namespace Services.GameScene.NetworkGameLoop_Service
       [Inject]
       private void Construct(GameLoop_StateMachine gameLoopStateMachine,
                              SessionData_Model sessionDataModel,
-                             ITicTacToeGame_Service ticTacToeGameService,
-                             TurnIndicator_UI turnIndicatorUI)
+                             ITicTacToeGame_Service ticTacToeGameService)
       {
          _gameLoopStateMachine = gameLoopStateMachine;
          _sessionDataModel = sessionDataModel;
          _ticTacToeGameService = ticTacToeGameService;
-         _turnIndicatorUI = turnIndicatorUI;
       }
 
       public override void Spawned()
@@ -64,7 +61,7 @@ namespace Services.GameScene.NetworkGameLoop_Service
             StartGame();
          }
       }
-
+      
       private void InitializeGame()
       {
          if (Object.HasStateAuthority == false)
@@ -113,8 +110,6 @@ namespace Services.GameScene.NetworkGameLoop_Service
       private void RPC_SetSessionData([RpcTarget] PlayerRef playerRef, Marks_Enum mark)
       {
          _sessionDataModel.Mark = mark;
-
-         _turnIndicatorUI.SetMarkImage(mark);
       }
 
       [Rpc(RpcSources.All, RpcTargets.StateAuthority)]

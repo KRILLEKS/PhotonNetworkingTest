@@ -20,7 +20,6 @@ namespace Installers
    {
       [SerializeField] private GameLoop_Network gameLoopNetwork;
       [SerializeField] private GameLoopBridge_Network gameLoopBridgeNetwork;
-      [SerializeField] private TurnIndicator_UI turnIndicatorUI;
 
       public override void InstallBindings()
       {
@@ -34,19 +33,21 @@ namespace Installers
 
          Container.Bind<GameLoop_Network>().FromInstance(gameLoopNetwork).AsSingle();
          Container.Bind<GameLoopBridge_Network>().FromInstance(gameLoopBridgeNetwork).AsSingle();
-         Container.Bind<TurnIndicator_UI>().FromInstance(turnIndicatorUI).AsSingle();
          
          BindStateMachine();
       }
 
       private void BindStateMachine()
       {
-         // await UniTask.WaitForSeconds(0.5f);
+         YourTurn_State yourTurnState = new YourTurn_State();
+         Container.Bind<YourTurn_State>().FromInstance(yourTurnState).AsSingle();
+         
          List<IBaseState> states = new List<IBaseState>()
          {
-            new YourTurn_State(),
+            yourTurnState,
             new WaitForOpponent_State()
          };
+         
          Container.Resolve<IStateMachineFactory_Service>().SetStateMachine<GameLoop_StateMachine>(states, Container);
       }
 
