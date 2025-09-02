@@ -67,13 +67,15 @@ namespace Services.GameScene.TicTacToeGameController
       {
          // Debug.Log("left click");
          if (_yourTurn == false)
+         {
+            Debug.LogError("You've tried to handle left click on enemy turn. This shouldn't be possible");
             return;
+         }
 
          Vector2Int? gridPosition = _gridService.WorldToGridPosition(worldPosition);
          // Debug.Log($"Clicked at grid position: {gridPosition}");
 
-         // out of grid borders
-         if (gridPosition == null)
+         if (gridPosition == null || _ticTacToeGameModel.GetMark(gridPosition.Value.x, gridPosition.Value.y) != Marks.None)
             return;
 
          _yourTurn = false;

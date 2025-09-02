@@ -3,61 +3,79 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Zenject;
 
 namespace Services.GameScene.Input
 {
-    public class Input_Service : IInput_Service, IInitializable, IDisposable
-    {
-        private readonly Subject<Vector2> _onLeftClick = new ();
-        private readonly CompositeDisposable _disposables = new ();
-    
-        private Camera _mainCamera;
-    
-        public IObservable<Vector2> OnLeftClick
-        {
-            get
-            {
-                return _onLeftClick;
-            }
-        }
+   public class Input_Service : IInput_Service,
+                                IInitializable,
+                                IDisposable
+   {
+      private readonly Subject<Vector2> _onLeftClick = new ();
+      private readonly CompositeDisposable _disposables = new ();
 
-        public void Initialize()
-        {
-            _mainCamera = Camera.main;
-        
-            if (_mainCamera == null)
-            {
-                Debug.LogError("Main camera not found!");
-                return;
-            }
+      private Camera _mainCamera;
 
-            // Observe left mouse button clicks using UniRx
-            Observable.EveryUpdate()
-                      .Where(_ => UnityEngine.Input.GetMouseButtonDown(0))
-                      .Subscribe(_ => HandleLeftClick())
-                      .AddTo(_disposables);
-        }
+      public IObservable<Vector2> OnLeftClick
+      {
+         get
+         {
+            return _onLeftClick;
+         }
+      }
 
-        private void HandleLeftClick()
-        {
-            Vector2 mousePosition = UnityEngine.Input.mousePosition;
-            Vector2 worldPosition = GetWorldPosition(mousePosition);
-            _onLeftClick.OnNext(worldPosition);
-        }
+      public void Initialize()
+      {
+         _mainCamera = Camera.main;
 
-        private Vector2 GetWorldPosition(Vector2 screenPosition)
-        {
-            // Convert screen position to world position
-            Vector3 worldPos = _mainCamera.ScreenToWorldPoint(
-                                                              new Vector3(screenPosition.x, screenPosition.y, _mainCamera.nearClipPlane));
-        
-            return worldPos;
-        }
+         if (_mainCamera == null)
+         {
+            Debug.LogError("Main camera not found!");
+            return;
+         }
 
-        public void Dispose()
-        {
-            _disposables.Dispose();
-            _onLeftClick?.Dispose();
-        }}
+         // Observe left mouse button clicks using UniRx
+         Observable.EveryUpdate()
+                   .Where(_ => UnityEngine.Input.GetMouseButtonDown(0))
+                   .Where(_ => IsPointerOverUI() == false)
+                   .Subscribe(_ => HandleLeftClick())
+                   .AddTo(_disposables);
+      }
+
+      private bool IsPointerOverUI()
+      {
+         bool isPointerOverUI;
+         // Check if using the new Input System
+#if ENABLE_INPUT_SYSTEM
+        isPointerOverUI = UnityEngine.InputSystem.UI.InputSystemUIInputModule.IsPointerOverGameObject();
+#else
+         // For legacy Input System
+         isPointerOverUI = EventSystem.current != null &&
+                           EventSystem.current.IsPointerOverGameObject();
+#endif
+         return isPointerOverUI;
+      }
+
+      private void HandleLeftClick()
+      {
+         Vector2 mousePosition = UnityEngine.Input.mousePosition;
+         Vector2 worldPosition = GetWorldPosition(mousePosition);
+         _onLeftClick.OnNext(worldPosition);
+      }
+
+      private Vector2 GetWorldPosition(Vector2 screenPosition)
+      {
+         // Convert screen position to world position
+         Vector3 worldPos = _mainCamera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, _mainCamera.nearClipPlane));
+
+         return worldPos;
+      }
+
+      public void Dispose()
+      {
+         _disposables.Dispose();
+         _onLeftClick?.Dispose();
+      }
+   }
 }
