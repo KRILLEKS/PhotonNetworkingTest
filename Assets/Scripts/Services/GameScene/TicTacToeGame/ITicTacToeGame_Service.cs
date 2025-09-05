@@ -8,5 +8,6 @@ namespace Services.GameScene.TicTacToeGameController
       void StartTurn();
       void FinishTurn();
       (bool isWin, Marks_Enum winnerMark, bool isDraw) CheckWin();
+      public void PlaceMark(int x, int y, Marks_Enum mark);
    }
 }

@@ -1,0 +1,430 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.7.2 Safari/537.36" version="27.0.9">
+  <diagram name="Page-1" id="w4x_JxxtH1hBhFXUoqxZ">
+    <mxGraphModel dx="2194" dy="2392" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-153" value="" style="rounded=0;whiteSpace=wrap;html=1;glass=0;shadow=0;sketch=1;curveFitting=1;jiggle=2;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="90" width="680" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-106" value="" style="rounded=0;whiteSpace=wrap;html=1;glass=0;shadow=0;sketch=1;curveFitting=1;jiggle=2;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="590" y="-210" width="490" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-18" value="SessionData_Model" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="540" y="694" width="250" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-19" value="&lt;div&gt;+ OnMarkChange : Subject&amp;lt;Marks_Enum&amp;gt;&lt;/div&gt;+ Mark : Marks_Enum" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-18">
+          <mxGeometry y="26" width="250" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-20" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-18">
+          <mxGeometry y="60" width="250" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-26" value="TicTacToeGame_Model" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1660" y="260" width="330" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-27" value="&lt;div&gt;+ OnMarkChange : Subject&amp;lt;(Vector2Int, Marks_Enum)&amp;gt;&lt;/div&gt;+ OnReset : Subject&amp;lt;Unit&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-26">
+          <mxGeometry y="26" width="330" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-28" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-26">
+          <mxGeometry y="60" width="330" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-29" value="&lt;div&gt;+ Reset&amp;nbsp;&lt;/div&gt;+ Initialize (in gridSize : int): void&lt;div&gt;+ SetMark (in x : int, in y : int, in mark : Marks_Enum) : void&lt;/div&gt;&lt;div&gt;+ GerMark(in x : int, in y : int) : Marks_Enum&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-26">
+          <mxGeometry y="68" width="330" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-31" value="&lt;div&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/div&gt;I&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Input_Service&lt;/span&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="430" width="210" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-32" value="+ OnLeftClick: IObservable&amp;lt;Vector2&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-31">
+          <mxGeometry y="40" width="210" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-33" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-31">
+          <mxGeometry y="66" width="210" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-53" value="&lt;div&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/div&gt;IGamePrefabFactory_Service" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="640" y="120" width="230" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-55" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-53">
+          <mxGeometry y="40" width="230" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-56" value="+ SpawnMark (in mark : Marks_Enum, in position : Vector3, in parent : Transform)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-53">
+          <mxGeometry y="48" width="230" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-64" value="&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;div&gt;ITicTacToeGrid_Service&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="940" y="250" width="290" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-65" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-64">
+          <mxGeometry y="40" width="290" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-66" value="+ GenerateGrid() : void&lt;div&gt;+ WorldToGridPosition (in worldPosition : Vector3) : Vector2Int?&lt;/div&gt;&lt;div&gt;+ GridToWorldPosition (in x : int, in y : int) : Vector3&lt;/div&gt;&lt;div&gt;+ GetCellSize() : float&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-64">
+          <mxGeometry y="48" width="290" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-67" value="&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;div&gt;ILobbyManager_Service&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="850" y="-140" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-68" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-67">
+          <mxGeometry y="40" width="210" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-69" value="+ StartGame(in mode : GameMode, in lobbyCode : string)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-67">
+          <mxGeometry y="48" width="210" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-70" value="&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;div&gt;IResourcesProvider_Service&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="600" y="-140" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-71" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-70">
+          <mxGeometry y="40" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-72" value="+ LoadResource&amp;lt;T&amp;gt;(in path : string) : T&lt;div&gt;+ LoadResources&amp;lt;T&amp;gt;(in path : string) : T[]&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-70">
+          <mxGeometry y="48" width="240" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-73" value="&lt;div&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;&lt;/div&gt;GameLoop_StateMachine" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=38;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="960" width="160" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-75" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-73">
+          <mxGeometry y="38" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-77" value="WaitForOpponent_State" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="1090" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-79" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-77">
+          <mxGeometry y="26" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-81" value="&lt;div&gt;&amp;lt;&amp;lt;State - service&amp;gt;&amp;gt;&lt;/div&gt;YourTurn_State" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1315" y="1150" width="200" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-82" value="+ OnYourTurnStart : Subject&amp;lt;Unit&amp;gt;&lt;div&gt;+ OnYourTurnEnd : Subject&amp;lt;Unit&amp;gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-81">
+          <mxGeometry y="40" width="200" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-83" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-81">
+          <mxGeometry y="74" width="200" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-86" value="&lt;div&gt;&amp;lt;&amp;lt;Scriptable object&amp;gt;&amp;gt;&lt;/div&gt;Grid_Config" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="810" y="460" width="160" height="178" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-87" value="+ gridSize : int&lt;div&gt;+ edgeOffset : float&lt;/div&gt;&lt;div&gt;+ marksInRowToWin : int&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ lineMaterial : Material&lt;/div&gt;&lt;div&gt;+ lineWidth : float&lt;/div&gt;&lt;div&gt;+ lineColor : Color&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ markPadding : float&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-86">
+          <mxGeometry y="36" width="160" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-88" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-86">
+          <mxGeometry y="170" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-90" value="&lt;div&gt;&amp;lt;&amp;lt;Mono behaviour&amp;gt;&amp;gt;&lt;/div&gt;GameEnd_UI" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="920" y="1000" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-92" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-90">
+          <mxGeometry y="40" width="200" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-93" value="+ SetMenu&amp;nbsp; (in text : string) : void&lt;div&gt;+ VoteForRematch() : void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-90">
+          <mxGeometry y="48" width="200" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-94" value="&lt;div&gt;&amp;lt;&amp;lt;Mono behaviour&amp;gt;&amp;gt;&lt;/div&gt;TicTacToeGame_View" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="148" width="200" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-95" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-94">
+          <mxGeometry y="40" width="200" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-99" value="&lt;div&gt;&amp;lt;&amp;lt;Mono behaviour&amp;gt;&amp;gt;&lt;/div&gt;TurnIndicator_UI" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="740" y="1140" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-100" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-99">
+          <mxGeometry y="40" width="210" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-101" value="+ SetTurnState(in state : bool) : void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-99">
+          <mxGeometry y="48" width="210" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-103" value="&lt;div&gt;&amp;lt;&amp;lt;Mono behaviour&amp;gt;&amp;gt;&lt;/div&gt;Lobby_UI" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="-140" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-104" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-103">
+          <mxGeometry y="40" width="210" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-105" value="+ CreateRoom() : void&lt;div&gt;+ JoinRoom() : void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-103">
+          <mxGeometry y="48" width="210" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-107" value="Global services" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="755" y="-206" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-108" value="Enter state" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-35" target="TvOd61_20gb5Hfd5Ageq-73">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="720" y="920" as="sourcePoint" />
+            <mxPoint x="880" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-109" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="960" y="720" width="340" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-35" value="GameLoop_Network" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-109">
+          <mxGeometry width="220" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-36" value="+ IsMyTurn: bool&lt;div&gt;+ BeforeRematch : Subject&amp;lt;Unit&amp;gt;&lt;/div&gt;&lt;div&gt;+ OnWin : Subject&amp;lt;Unit&amp;gt;&lt;/div&gt;&lt;div&gt;+ OnDraw : Subject&amp;lt;Unit&amp;gt;&lt;/div&gt;&lt;div&gt;+ OnLose : Subject&amp;lt;Unit&amp;gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-35">
+          <mxGeometry y="26" width="220" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-37" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-35">
+          <mxGeometry y="110" width="220" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-38" value="+ StartGame(): void&lt;div&gt;+ RPC_PlayerFinishedTurn() : void&lt;/div&gt;&lt;div&gt;+ RPC_CheckWin() : void&lt;/div&gt;&lt;div&gt;+ RPC_VoteForRematch() : void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-35">
+          <mxGeometry y="118" width="220" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-39" value="Controlls game loop" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-109">
+          <mxGeometry x="260" y="46" width="80" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-41" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;curved=0;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="TvOd61_20gb5Hfd5Ageq-109" source="TvOd61_20gb5Hfd5Ageq-35" target="TvOd61_20gb5Hfd5Ageq-39">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="280" as="sourcePoint" />
+            <mxPoint x="310" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-113" value="Initializes&lt;div&gt;Check mark to determine win/lose&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-35" target="TvOd61_20gb5Hfd5Ageq-18">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="880" y="856" as="sourcePoint" />
+            <mxPoint x="660" y="820" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-114" value="CheckWin" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.168;entryY=1.024;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-35" target="TvOd61_20gb5Hfd5Ageq-60">
+          <mxGeometry x="-0.4616" y="-5" width="160" relative="1" as="geometry">
+            <mxPoint x="1003" y="837" as="sourcePoint" />
+            <mxPoint x="920" y="770" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-115" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-73" target="TvOd61_20gb5Hfd5Ageq-81">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="1325" y="1060" as="sourcePoint" />
+            <mxPoint x="1485" y="1060" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-116" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-73" target="TvOd61_20gb5Hfd5Ageq-77">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="770" y="810" as="sourcePoint" />
+            <mxPoint x="840" y="894" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-117" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1490" y="762" width="370" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-46" value="GameLoopBridge_Network" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-117">
+          <mxGeometry width="240" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-48" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-46">
+          <mxGeometry y="26" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-49" value="+ RPC_RequestPlaceMark&lt;div&gt;(in x : int, in y : int, in mark : Marks_Enum)&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-46">
+          <mxGeometry y="34" width="240" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-50" value="Communication during game loop" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-117">
+          <mxGeometry x="270" y="8" width="100" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-51" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;curved=0;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="TvOd61_20gb5Hfd5Ageq-117" source="TvOd61_20gb5Hfd5Ageq-49" target="TvOd61_20gb5Hfd5Ageq-50">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="218.67999999999984" y="62.03600000000006" as="sourcePoint" />
+            <mxPoint x="310" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-120" value="RPC_RequesPlaceMark" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-57" target="TvOd61_20gb5Hfd5Ageq-46">
+          <mxGeometry x="-0.4199" y="8" width="160" relative="1" as="geometry">
+            <mxPoint x="1220" y="876" as="sourcePoint" />
+            <mxPoint x="1358" y="760" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-121" value="PlaceMark" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.888;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-46" target="TvOd61_20gb5Hfd5Ageq-60">
+          <mxGeometry x="-0.3443" width="160" relative="1" as="geometry">
+            <mxPoint x="1489.2859581881532" y="876" as="sourcePoint" />
+            <mxPoint x="1400.7145296167248" y="712" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-123" value="LoadResourcse&amp;lt;T&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-53" target="TvOd61_20gb5Hfd5Ageq-70">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="973" y="817" as="sourcePoint" />
+            <mxPoint x="890" y="750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-125" value="GetCellSize()" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-53" target="TvOd61_20gb5Hfd5Ageq-64">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="760" y="407" as="sourcePoint" />
+            <mxPoint x="771" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-126" value="Access mark field&lt;div&gt;To understand what to spawn&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-53" target="TvOd61_20gb5Hfd5Ageq-18">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="770" y="392" as="sourcePoint" />
+            <mxPoint x="960" y="382" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-127" value="&amp;lt;&amp;lt;Subscribes&amp;gt;&amp;gt;&lt;div&gt;OnLeftClick&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-57" target="TvOd61_20gb5Hfd5Ageq-31">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1180" y="856" as="sourcePoint" />
+            <mxPoint x="1318" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-129" value="WorldToGridPosition" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-57" target="TvOd61_20gb5Hfd5Ageq-64">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1296" y="614" as="sourcePoint" />
+            <mxPoint x="1170" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-130" value="Controls model&lt;div&gt;Get Mark&lt;/div&gt;&lt;div&gt;Set Mark&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Reset&lt;/span&gt;&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-57" target="TvOd61_20gb5Hfd5Ageq-26">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1336" y="662" as="sourcePoint" />
+            <mxPoint x="1250" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-131" value="PlayerFinishedTurn&lt;div&gt;CheckWin&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=-0.007;exitY=0.747;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-60" target="TvOd61_20gb5Hfd5Ageq-35">
+          <mxGeometry x="-0.3622" y="-4" width="160" relative="1" as="geometry">
+            <mxPoint x="1170" y="856" as="sourcePoint" />
+            <mxPoint x="1308" y="740" as="targetPoint" />
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-132" value="Access mark field&lt;div&gt;To understand players&#39;s mark&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-57" target="TvOd61_20gb5Hfd5Ageq-18">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1068" y="688" as="sourcePoint" />
+            <mxPoint x="942" y="604" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-133" value="&lt;div&gt;Access&lt;/div&gt;GridSize&lt;div&gt;MarksInRowToWin&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-57" target="TvOd61_20gb5Hfd5Ageq-86">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1440" y="659" as="sourcePoint" />
+            <mxPoint x="1577" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-134" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1370" y="463" width="375" height="172" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-57" value="&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;div&gt;ITicTacToeGame_Service&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-134">
+          <mxGeometry width="250" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-59" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-57">
+          <mxGeometry y="40" width="250" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-60" value="+ StartTurn() : void&lt;div&gt;+ FinishTurn() : void&lt;/div&gt;&lt;div&gt;+ CheckWin() : (bool, Marks_Enum, isDraw)&lt;/div&gt;&lt;div&gt;+ PlaceMark(in x : int, in y : int, in mark : Marks_Enum) : void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-57">
+          <mxGeometry y="48" width="250" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-61" value="Controlls game field&lt;div&gt;Match controller basically&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-134">
+          <mxGeometry x="275" y="58" width="100" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-110" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="TvOd61_20gb5Hfd5Ageq-134" source="TvOd61_20gb5Hfd5Ageq-61" target="TvOd61_20gb5Hfd5Ageq-57">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-136" value="Access many fields&lt;br&gt;To spawn grid" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-64" target="TvOd61_20gb5Hfd5Ageq-86">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1346" y="672" as="sourcePoint" />
+            <mxPoint x="1260" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-138" value="Initialize&lt;div&gt;// First initialization&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-64" target="TvOd61_20gb5Hfd5Ageq-26">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1450" y="250" as="sourcePoint" />
+            <mxPoint x="1580" y="303" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-139" value="StartTurn&lt;div&gt;FinishTurn&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-81" target="TvOd61_20gb5Hfd5Ageq-57">
+          <mxGeometry x="-0.4616" y="-5" width="160" relative="1" as="geometry">
+            <mxPoint x="1310" y="1200" as="sourcePoint" />
+            <mxPoint x="1310" y="711.9999999999995" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-140" value="&amp;lt;&amp;lt;Subscribes&amp;gt;&amp;gt;&lt;div&gt;OnWin&lt;/div&gt;&lt;div&gt;OnLose&lt;/div&gt;&lt;div&gt;OnDraw&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-90" target="TvOd61_20gb5Hfd5Ageq-35">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="933" y="887" as="sourcePoint" />
+            <mxPoint x="850" y="820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-141" value="SpawnMark" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-94" target="TvOd61_20gb5Hfd5Ageq-53">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1120" y="220" as="sourcePoint" />
+            <mxPoint x="1190" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-142" value="&amp;lt;&amp;lt;Subscribes&amp;gt;&amp;gt;&lt;div&gt;OnMarkChange&lt;/div&gt;&lt;div&gt;OnReset&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-94" target="TvOd61_20gb5Hfd5Ageq-26">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="2080" y="249" as="sourcePoint" />
+            <mxPoint x="1390" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-143" value="GridToWorldPosition" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-94" target="TvOd61_20gb5Hfd5Ageq-64">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="2080" y="249" as="sourcePoint" />
+            <mxPoint x="1390" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-144" value="&amp;lt;&amp;lt;Subscribes&amp;gt;&amp;gt;&lt;div&gt;OnMarkChange&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-99" target="TvOd61_20gb5Hfd5Ageq-18">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="923" y="877" as="sourcePoint" />
+            <mxPoint x="840" y="810" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-145" value="&amp;lt;&amp;lt;Subscribes&amp;gt;&amp;gt;&lt;div&gt;OnYourTurnStart&lt;/div&gt;&lt;div&gt;OnYourTurnEnd&lt;/div&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-99" target="TvOd61_20gb5Hfd5Ageq-81">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="850" y="1516" as="sourcePoint" />
+            <mxPoint x="868" y="1030" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-146" value="StartGame" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-103" target="TvOd61_20gb5Hfd5Ageq-67">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="962" y="180" as="sourcePoint" />
+            <mxPoint x="940" y="10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-150" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="680" y="1290" width="490" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;glass=0;shadow=0;sketch=1;curveFitting=1;jiggle=2;fontColor=#333333;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-150">
+          <mxGeometry width="490" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-3" value="Plugins/Arhitecture" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-150">
+          <mxGeometry x="165" y="10" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-5" value="&lt;div&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/div&gt;IStateMachineFactory_Service" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-150">
+          <mxGeometry x="95" y="50" width="300" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-5">
+          <mxGeometry y="36" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-8" value="+ SetStateMachine(in states : List&amp;lt;IBaseState&amp;gt;,&lt;div&gt;&amp;nbsp;in diContainer : DiContainer) : void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-5">
+          <mxGeometry y="44" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-9" value="&lt;div&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/div&gt;IState" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-150">
+          <mxGeometry x="310" y="176" width="160" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-9">
+          <mxGeometry y="40" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-12" value="+ Enter(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-9">
+          <mxGeometry y="48" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-13" value="&lt;div&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/div&gt;IBaseState" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-150">
+          <mxGeometry x="20" y="176" width="160" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-14" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-13">
+          <mxGeometry y="40" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-15" value="+ Exit(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="TvOd61_20gb5Hfd5Ageq-13">
+          <mxGeometry y="48" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-17" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;" edge="1" parent="TvOd61_20gb5Hfd5Ageq-150" source="TvOd61_20gb5Hfd5Ageq-9" target="TvOd61_20gb5Hfd5Ageq-13">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="110" y="276" as="sourcePoint" />
+            <mxPoint x="230" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-151" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-77" target="TvOd61_20gb5Hfd5Ageq-9">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1150" y="1450" as="sourcePoint" />
+            <mxPoint x="1580" y="1520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-154" value="Game scene main logic - MVC" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="100" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TvOd61_20gb5Hfd5Ageq-152" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="TvOd61_20gb5Hfd5Ageq-81" target="TvOd61_20gb5Hfd5Ageq-9">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1520" y="1470" as="sourcePoint" />
+            <mxPoint x="1342" y="1240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

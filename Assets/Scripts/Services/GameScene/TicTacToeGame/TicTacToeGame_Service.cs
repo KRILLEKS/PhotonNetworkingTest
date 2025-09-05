@@ -162,6 +162,10 @@ namespace Services.GameScene.TicTacToeGameController
          }
       }
 
+      public void PlaceMark(int x, int y, Marks_Enum mark)
+      {
+         _ticTacToeGameModel.SetMark(x, y, mark);
+      }
 
       public void Dispose()
       {

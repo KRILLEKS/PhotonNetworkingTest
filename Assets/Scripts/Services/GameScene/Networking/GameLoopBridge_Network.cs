@@ -10,12 +10,12 @@ namespace Services.GameScene.NetworkGameLoop_Service
    // Controls only communication between players. Doesn't control game loop
    public class GameLoopBridge_Network : NetworkBehaviour
    {
-      private TicTacToeGame_Model _ticTacToeGameModel;
+      private ITicTacToeGame_Service _ticTacToeGameService;
       
       [Inject]
-      private void Construct(TicTacToeGame_Model ticTacToeGameModel)
+      private void Construct(ITicTacToeGame_Service ticTacToeGameService)
       {
-         _ticTacToeGameModel = ticTacToeGameModel;
+         _ticTacToeGameService = ticTacToeGameService;
       }
       
       [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -27,7 +27,7 @@ namespace Services.GameScene.NetworkGameLoop_Service
       [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
       private void RPC_PlaceMark(int x, int y, Marks_Enum mark)
       {
-         _ticTacToeGameModel.SetMark(x, y, mark);
+         _ticTacToeGameService.PlaceMark(x,y,mark);
       }
    }
 }
